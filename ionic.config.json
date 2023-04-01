@@ -1,0 +1,7 @@
+{
+  "name": "Budget Keeper",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
