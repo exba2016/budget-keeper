@@ -38,15 +38,11 @@ export class ArticleService {
   }
 
   async getCount(): Promise<number> {
-    try {
-      const retCount: any = (
-        await this.repository.query('select count(*) AS count from article')
-      )[0];
-      const count: number = retCount.count;
-      return count;
-    } catch (err: any) {
-      return 0;
-    }
+    const retCount: any = (
+      await this.repository.query('select count(*) AS count from article_entity')
+    )[0];
+    const count: number = retCount.count;
+    return count;
   }
 
   async seed() {
@@ -76,12 +72,12 @@ export class ArticleService {
         nom: 'viande',
       }),
     ];
-    const dataForSearch = data.map((v) => v.nom);
-    const existingData = await this.repository.find({
+    let dataForSearch = data.map((v) => v.nom);
+    let existingData = await this.repository.find({
       where: { nom: In(dataForSearch) },
     });
 
-    const validData = data.map((p) => {
+    let validData = data.map((p) => {
       const existing = existingData.find((e) => e.nom === p.nom);
       if (existing) {
         return existing;
@@ -90,7 +86,7 @@ export class ArticleService {
     });
     // Creating / updating
     let dataSaved = await this.repository.save(validData);
-    data = await Promise.all(
+    let dataImages:ImageEntity[] = await Promise.all(
       dataSaved.map(
         async (v) =>
           new ImageEntity({
@@ -106,7 +102,7 @@ export class ArticleService {
       .getRepository(ImageEntity)
       .createQueryBuilder()
       .insert()
-      .values(data)
+      .values(dataImages)
       .execute();
   }
 

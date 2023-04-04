@@ -25,8 +25,6 @@ export class ImageService {
     );
     if (this.dataSource.isInitialized) {
       this.repository = this.dataSource.getRepository(ImageEntity);
-      const count = await this.getCount();
-      console.log(`@@@ count complete: ${ImageService.name} > ${count}@@@@`);
      
     } else {
       return Promise.reject(`Error: ${ArticleService.name} not initialized`);
