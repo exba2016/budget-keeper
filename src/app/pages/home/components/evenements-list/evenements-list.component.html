@@ -1,0 +1,9 @@
+
+<ion-list class="ion-no-padding ion-no-margin">
+  <ion-item lines="none" color="dark" class="ion-no-padding ion-no-margin title">
+    <ion-label>{{'mes événements'|uppercase}}</ion-label>
+  </ion-item>
+  <ion-item button class="ion-no-padding ion-no-margin" *ngFor="let evenement of response?.content" detail>
+    <ion-label>{{evenement.nom|titlecase}}</ion-label>
+  </ion-item>
+</ion-list>
