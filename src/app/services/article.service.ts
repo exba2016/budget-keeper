@@ -124,15 +124,19 @@ export class ArticleService {
         .skip(skip)
         .take(take)
         .orderBy(attributeNameOrder, order);
-
-      if (search) {
+      if (search&&search.length>0) {
         const metadata = this.dataSource.getMetadata(ArticleEntity);
         const columns = metadata.columns;
         const searchConditions: string[] = [];
 
         for (const column of columns) {
-          const columnName = column.givenDatabaseName;
+     
+          const columnName = column.databaseName;
           const columnType = column.type;
+          
+        console.log('====================================');
+        console.log("@search ",column);
+        console.log('====================================');
 
           // Vérifier si le type de colonne est compatible avec SQLite
           if (

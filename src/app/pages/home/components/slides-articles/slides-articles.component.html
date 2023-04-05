@@ -5,7 +5,7 @@
   </ion-item>
   <ion-item lines="none">
     <swiper-container #articleSwiper slides-per-view="2.3" free-mode="true"  loop="true">
-      <swiper-slide button *ngFor="let article of response?.content">
+      <swiper-slide *ngFor="let article of response?.content">
         <img *ngIf="article.images&&article.images.length>0" [src]="article.images[0].src??'./../../../../../assets/images/articles/default.jpg'" [alt]="article.images[0].nom" />
         <img *ngIf="!(article.images&&article.images.length>0)" [src]="'./../../../../../assets/images/articles/default.jpg'" [alt]="'default image'" />
         <ion-label>{{article.nom|titlecase}}</ion-label>

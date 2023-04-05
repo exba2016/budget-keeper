@@ -1,13 +1,13 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>articles</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
+  <div class="content">
+    <div class="header">
+      <ion-searchbar [debounce]="500" (ionInput)="handleChange($event)" color="light" [animated]="true" placeholder="tomate..."></ion-searchbar>
+      <ion-button class="add ion-no-margin" expand="full">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </div>
+    
+    <app-articles-list [search]="search"></app-articles-list>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">articles</ion-title>
-    </ion-toolbar>
-  </ion-header>
 </ion-content>
